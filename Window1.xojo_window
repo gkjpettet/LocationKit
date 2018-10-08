@@ -32,10 +32,10 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Open()
-		  LocationServices.Provider = LocationServices.Providers.IP_API
+		  ' LocationServices.Provider = LocationServices.Providers.IP_API
 		  ' LocationServices.APIKey = "YOUR_KEY_HERE"
 		  
-		  ' LocationServices.Provider = LocationServices.Providers.IPAPI
+		  LocationServices.Provider = LocationServices.Providers.IPAPI
 		  ' LocationServices.APIKey = "YOUR_KEY_HERE"
 		  
 		  ' LocationServices.Provider = LocationServices.Providers.IPStack
