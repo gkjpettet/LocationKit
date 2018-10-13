@@ -26,11 +26,11 @@ Inherits Xojo.Net.HTTPSocket
 		  If dict.HasKey("error") Then
 		    Dim e As Xojo.Core.Dictionary = dict.Value("error")
 		    dim info As Text = e.Lookup("info", "An error occurred during location lookup from ipstack.com")
-		    Raise New LocationServices.Error(info)
+		    Raise New LocationKit.Error(info)
 		  End If
 		  
 		  ' Try to convert the received dictionary to a Geolocation object.
-		  Dim geo As LocationServices.Geolocation = LocationServices.IPStack.JSONDictToLocation(dict)
+		  Dim geo As LocationKit.Geolocation = LocationKit.IPStack.JSONDictToLocation(dict)
 		  
 		  ' Invoke the callback method, passing it the Geolocation object.
 		  Callback.Invoke(geo)
@@ -39,7 +39,7 @@ Inherits Xojo.Net.HTTPSocket
 
 
 	#tag Method, Flags = &h0
-		Sub Constructor(callback As LocationServices.LocationObtained)
+		Sub Constructor(callback As LocationKit.LocationObtained)
 		  ' Calling the overridden superclass constructor.
 		  Super.Constructor
 		  
@@ -49,7 +49,7 @@ Inherits Xojo.Net.HTTPSocket
 
 
 	#tag Property, Flags = &h0
-		Callback As LocationServices.LocationObtained
+		Callback As LocationKit.LocationObtained
 	#tag EndProperty
 
 

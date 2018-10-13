@@ -1,11 +1,11 @@
 #tag Module
-Protected Module LocationServices
+Protected Module LocationKit
 	#tag Method, Flags = &h1
-		Protected Sub Get(callback As LocationServices.LocationObtained)
+		Protected Sub Get(callback As LocationKit.LocationObtained)
 		  ' Get the geolocation for this computer's current IP address using the desired provider.
 		  ' Invokes the passed callback delegate when the geolocation is available.
 		  ' Note, not all providers can automatically determine your IP. If this is the case then 
-		  ' this method raises a LocationServices.Error exception.
+		  ' this method raises a LocationKit.Error exception.
 		  
 		  Select Case Provider
 		  Case Providers.IP_API
@@ -20,7 +20,7 @@ Protected Module LocationServices
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Sub Get(ip As Text, callback As LocationServices.LocationObtained)
+		Protected Sub Get(ip As Text, callback As LocationKit.LocationObtained)
 		  ' Get the geolocation for the specified IP address using the desired provider.
 		  ' Invokes the passed callback delegate when the geolocation is available.
 		  
@@ -37,7 +37,7 @@ Protected Module LocationServices
 	#tag EndMethod
 
 	#tag DelegateDeclaration, Flags = &h1
-		Protected Delegate Sub LocationObtained(geo As LocationServices . Geolocation)
+		Protected Delegate Sub LocationObtained(geo As LocationKit.Geolocation)
 	#tag EndDelegateDeclaration
 
 	#tag Method, Flags = &h1
@@ -93,7 +93,7 @@ Protected Module LocationServices
 	#tag EndProperty
 
 	#tag Property, Flags = &h1
-		Protected Provider As LocationServices.Providers = LocationServices.Providers.IP_API
+		Protected Provider As LocationKit.Providers = LocationKit.Providers.IP_API
 	#tag EndProperty
 
 

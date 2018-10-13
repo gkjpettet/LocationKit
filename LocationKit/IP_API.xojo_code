@@ -1,13 +1,13 @@
 #tag Module
 Protected Module IP_API
 	#tag Method, Flags = &h1
-		Protected Sub Get(callback As LocationServices.LocationObtained)
+		Protected Sub Get(callback As LocationKit.LocationObtained)
 		  ' Setup our socket.
-		  mSocket = New LocationServices.IP_API.IP_APISocket(callback)
+		  mSocket = New LocationKit.IP_API.IP_APISocket(callback)
 		  
 		  ' Make the request.
-		  If LocationServices.APIKey <> "" Then
-		    mSocket.Send("GET", kURLWithAPIKey + "/?key=" + LocationServices.APIKey)
+		  If LocationKit.APIKey <> "" Then
+		    mSocket.Send("GET", kURLWithAPIKey + "/?key=" + LocationKit.APIKey)
 		  Else
 		    mSocket.Send("GET", kURL)
 		  End If
@@ -15,16 +15,16 @@ Protected Module IP_API
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Sub Get(ip As Text, callback As LocationServices.LocationObtained)
+		Protected Sub Get(ip As Text, callback As LocationKit.LocationObtained)
 		  ' Check the passed IP address is a valid IPV4 address.
-		  If Not LocationServices.ValidIP(ip) Then Return
+		  If Not LocationKit.ValidIP(ip) Then Return
 		  
 		  ' Setup our socket.
-		  mSocket = New LocationServices.IP_API.IP_APISocket(callback)
+		  mSocket = New LocationKit.IP_API.IP_APISocket(callback)
 		  
 		  ' Make the request.
-		  If LocationServices.APIKey <> "" Then
-		    mSocket.Send("GET", kURLWithAPIKey + "/" + ip + "?key=" + LocationServices.APIKey)
+		  If LocationKit.APIKey <> "" Then
+		    mSocket.Send("GET", kURLWithAPIKey + "/" + ip + "?key=" + LocationKit.APIKey)
 		  Else
 		    mSocket.Send("GET", kURL + "/" + ip)
 		  End If
@@ -32,11 +32,11 @@ Protected Module IP_API
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Function JSONDictToLocation(d As Xojo.Core.Dictionary) As LocationServices.Geolocation
+		Protected Function JSONDictToLocation(d As Xojo.Core.Dictionary) As LocationKit.Geolocation
 		  ' Takes a Dictionary that has been derived from the JSON returned by the ip-api.com API
 		  ' and returns it as a Geolocation.
 		  
-		  Dim geo As New LocationServices.Geolocation
+		  Dim geo As New LocationKit.Geolocation
 		  
 		  geo.Country = d.Lookup("country", "")
 		  geo.CountryCode = d.Lookup("countryCode", "")
@@ -60,7 +60,7 @@ Protected Module IP_API
 
 
 	#tag Property, Flags = &h21
-		Private mSocket As LocationServices.IP_API.IP_APISocket
+		Private mSocket As LocationKit.IP_API.IP_APISocket
 	#tag EndProperty
 
 

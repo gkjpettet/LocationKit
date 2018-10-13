@@ -1,58 +1,58 @@
 #tag Module
 Protected Module IPStack
 	#tag Method, Flags = &h1
-		Protected Sub Get(callback As LocationServices.LocationObtained)
+		Protected Sub Get(callback As LocationKit.LocationObtained)
 		  ' Get the geolocation from this computer's IP.
 		  
 		  ' Setup our socket.
-		  mSocket = New LocationServices.IPStack.IPStackSocket(callback)
+		  mSocket = New LocationKit.IPStack.IPStackSocket(callback)
 		  
 		  ' Ensure an API key has been set.
-		  If LocationServices.APIKey = "" Then
-		    Raise New LocationServices.Error("IPStack requires an API for every request.")
+		  If LocationKit.APIKey = "" Then
+		    Raise New LocationKit.Error("IPStack requires an API for every request.")
 		  End If
 		  
 		  ' Make the request. The URL to use depends upon whether or not this is a Pro 
 		  ' or free account.
-		  If LocationServices.Pro Then
-		    mSocket.Send("GET", kURLSecure + "/check?access_key=" + LocationServices.APIKey)
+		  If LocationKit.Pro Then
+		    mSocket.Send("GET", kURLSecure + "/check?access_key=" + LocationKit.APIKey)
 		  Else
-		    mSocket.Send("GET", kURL + "/check?access_key=" + LocationServices.APIKey)
+		    mSocket.Send("GET", kURL + "/check?access_key=" + LocationKit.APIKey)
 		  End If
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Sub Get(ip As Text, callback As LocationServices.LocationObtained)
+		Protected Sub Get(ip As Text, callback As LocationKit.LocationObtained)
 		  ' Get the geolocation of a specific IP.
 		  
 		  ' Check the passed IP address is a valid IPV4 address.
-		  If Not LocationServices.ValidIP(ip) Then Return
+		  If Not LocationKit.ValidIP(ip) Then Return
 		  
 		  ' Setup our socket.
-		  mSocket = New LocationServices.IPStack.IPStackSocket(callback)
+		  mSocket = New LocationKit.IPStack.IPStackSocket(callback)
 		  
 		  ' Ensure an API key has been set.
-		  If LocationServices.APIKey = "" Then
-		    Raise New LocationServices.Error("IPStack requires an API for every request.")
+		  If LocationKit.APIKey = "" Then
+		    Raise New LocationKit.Error("IPStack requires an API for every request.")
 		  End If
 		  
 		  ' Make the request. The URL to use depends upon whether or not this is a Pro 
 		  ' or free account.
-		  If LocationServices.Pro Then
-		    mSocket.Send("GET", kURLSecure + "/" + ip + "?access_key=" + LocationServices.APIKey)
+		  If LocationKit.Pro Then
+		    mSocket.Send("GET", kURLSecure + "/" + ip + "?access_key=" + LocationKit.APIKey)
 		  Else
-		    mSocket.Send("GET", kURL + "/" + ip + "?access_key=" + LocationServices.APIKey)
+		    mSocket.Send("GET", kURL + "/" + ip + "?access_key=" + LocationKit.APIKey)
 		  End If
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Function JSONDictToLocation(d As Xojo.Core.Dictionary) As LocationServices.Geolocation
+		Protected Function JSONDictToLocation(d As Xojo.Core.Dictionary) As LocationKit.Geolocation
 		  ' Takes a Dictionary that has been derived from the JSON returned by the ipstack.com API 
 		  ' and returns it as a Geolocation.
 		  
-		  Dim geo As New LocationServices.Geolocation
+		  Dim geo As New LocationKit.Geolocation
 		  
 		  geo.IP = d.Lookup("ip", "")
 		  geo.ContinentCode = d.Lookup("continent_code", "")
@@ -97,7 +97,7 @@ Protected Module IPStack
 
 
 	#tag Property, Flags = &h21
-		Private mSocket As LocationServices.IPStack.IPStackSocket
+		Private mSocket As LocationKit.IPStack.IPStackSocket
 	#tag EndProperty
 
 

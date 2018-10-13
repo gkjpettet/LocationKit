@@ -32,23 +32,23 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Open()
-		  ' LocationServices.Provider = LocationServices.Providers.IP_API
-		  ' LocationServices.APIKey = "YOUR_KEY_HERE"
+		  ' LocationKit.Provider = LocationKit.Providers.IP_API
+		  ' LocationKit.APIKey = "YOUR_KEY_HERE"
 		  
-		  LocationServices.Provider = LocationServices.Providers.IPAPI
-		  ' LocationServices.APIKey = "YOUR_KEY_HERE"
+		  LocationKit.Provider = LocationKit.Providers.IPAPI
+		  ' LocationKit.APIKey = "YOUR_KEY_HERE"
 		  
-		  ' LocationServices.Provider = LocationServices.Providers.IPStack
-		  ' LocationServices.APIKey = "YOUR_KEY_HERE"
-		  ' LocationServices.Pro = False
+		  ' LocationKit.Provider = LocationKit.Providers.IPStack
+		  ' LocationKit.APIKey = "YOUR_KEY_HERE"
+		  ' LocationKit.Pro = False
 		  
-		  LocationServices.Get(AddressOf LocationObtained)
+		  LocationKit.Get(AddressOf LocationObtained)
 		End Sub
 	#tag EndEvent
 
 
 	#tag Method, Flags = &h1
-		Protected Sub LocationObtained(geo As LocationServices.Geolocation)
+		Protected Sub LocationObtained(geo As LocationKit.Geolocation)
 		  ' Handle your freshly retrieved geolocation data here.
 		  
 		  Break

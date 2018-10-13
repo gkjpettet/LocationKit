@@ -1,15 +1,15 @@
 #tag Module
 Protected Module IPAPI
 	#tag Method, Flags = &h1
-		Protected Sub Get(callback As LocationServices.LocationObtained)
+		Protected Sub Get(callback As LocationKit.LocationObtained)
 		  ' Get the geolocation from this computer's IP.
 		  
 		  ' Setup our socket.
-		  mSocket = New LocationServices.IPAPI.IPAPISocket(callback)
+		  mSocket = New LocationKit.IPAPI.IPAPISocket(callback)
 		  
 		  ' Make the request.
-		  If LocationServices.APIKey <> "" Then
-		    mSocket.Send("GET", kURL + "/json/?key=" + LocationServices.APIKey)
+		  If LocationKit.APIKey <> "" Then
+		    mSocket.Send("GET", kURL + "/json/?key=" + LocationKit.APIKey)
 		  Else
 		    mSocket.Send("GET", kURL + "/json/")
 		  End If
@@ -18,18 +18,18 @@ Protected Module IPAPI
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Sub Get(ip As Text, callback As LocationServices.LocationObtained)
+		Protected Sub Get(ip As Text, callback As LocationKit.LocationObtained)
 		  ' Get the geolocation of a specific IP.
 		  
 		  ' Check the passed IP address is a valid IPV4 address.
-		  If Not LocationServices.ValidIP(ip) Then Return
+		  If Not LocationKit.ValidIP(ip) Then Return
 		  
 		  ' Setup our socket.
-		  mSocket = New LocationServices.IPAPI.IPAPISocket(callback)
+		  mSocket = New LocationKit.IPAPI.IPAPISocket(callback)
 		  
 		  ' Make the request.
-		  If LocationServices.APIKey <> "" Then
-		    mSocket.Send("GET", kURL + "/" + ip + "/json/?key=" + LocationServices.APIKey)
+		  If LocationKit.APIKey <> "" Then
+		    mSocket.Send("GET", kURL + "/" + ip + "/json/?key=" + LocationKit.APIKey)
 		  Else
 		    mSocket.Send("GET", kURL + "/" + ip + "/json/")
 		  End If
@@ -38,11 +38,11 @@ Protected Module IPAPI
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Function JSONDictToLocation(d As Xojo.Core.Dictionary) As LocationServices.Geolocation
+		Protected Function JSONDictToLocation(d As Xojo.Core.Dictionary) As LocationKit.Geolocation
 		  ' Takes a Dictionary that has been derived from the JSON returned by the ipapi.co API 
 		  ' and returns it as a Geolocation.
 		  
-		  Dim geo As New LocationServices.Geolocation
+		  Dim geo As New LocationKit.Geolocation
 		  
 		  geo.IP = d.Lookup("ip", "")
 		  geo.City = d.Lookup("city", "")
@@ -72,7 +72,7 @@ Protected Module IPAPI
 
 
 	#tag Property, Flags = &h21
-		Private mSocket As LocationServices.IPAPI.IPAPISocket
+		Private mSocket As LocationKit.IPAPI.IPAPISocket
 	#tag EndProperty
 
 

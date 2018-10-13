@@ -7,7 +7,7 @@ Protected Class Geolocation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(geo As LocationServices.Geolocation)
+		Sub Constructor(geo As LocationKit.Geolocation)
 		  ' Create a clone of the passed Geolocation object.
 		  
 		  Self.City = geo.City

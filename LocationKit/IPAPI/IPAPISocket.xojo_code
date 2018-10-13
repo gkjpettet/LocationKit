@@ -25,11 +25,11 @@ Inherits Xojo.Net.HTTPSocket
 		  ' Was there an error returned by IPAPI?
 		  If dict.HasKey("error") Then
 		    Dim reason As Text = dict.Lookup("reason", "An error occurred during location lookup from ipapi.co")
-		    Raise New LocationServices.Error(reason)
+		    Raise New LocationKit.Error(reason)
 		  End If
 		  
 		  ' Try to convert the received dictionary to a Geolocation object.
-		  Dim geo As LocationServices.Geolocation = LocationServices.IPAPI.JSONDictToLocation(dict)
+		  Dim geo As LocationKit.Geolocation = LocationKit.IPAPI.JSONDictToLocation(dict)
 		  
 		  ' Invoke the callback method, passing it the Geolocation object.
 		  Callback.Invoke(geo)
@@ -38,7 +38,7 @@ Inherits Xojo.Net.HTTPSocket
 
 
 	#tag Method, Flags = &h0
-		Sub Constructor(callback As LocationServices.LocationObtained)
+		Sub Constructor(callback As LocationKit.LocationObtained)
 		  ' Calling the overridden superclass constructor.
 		  Super.Constructor
 		  
@@ -48,7 +48,7 @@ Inherits Xojo.Net.HTTPSocket
 
 
 	#tag Property, Flags = &h0
-		Callback As LocationServices.LocationObtained
+		Callback As LocationKit.LocationObtained
 	#tag EndProperty
 
 
