@@ -37,7 +37,7 @@ Protected Module LocationKit
 	#tag EndMethod
 
 	#tag DelegateDeclaration, Flags = &h1
-		Protected Delegate Sub LocationObtained(geo As LocationKit.Geolocation)
+		Protected Delegate Sub LocationObtained(geo As LocationKit . Geolocation)
 	#tag EndDelegateDeclaration
 
 	#tag Method, Flags = &h1
@@ -83,6 +83,12 @@ Protected Module LocationKit
 		
 	#tag EndNote
 
+	#tag Note, Name = Release notes
+		
+		- Fixes a TypeMismatchException in IPAPI.JSONDictToLocation
+		1.0.1
+	#tag EndNote
+
 
 	#tag Property, Flags = &h1
 		Protected APIKey As Text
@@ -97,7 +103,7 @@ Protected Module LocationKit
 	#tag EndProperty
 
 
-	#tag Constant, Name = Version, Type = Text, Dynamic = False, Default = \"1.0.0", Scope = Protected
+	#tag Constant, Name = Version, Type = Text, Dynamic = False, Default = \"1.0.1", Scope = Protected
 	#tag EndConstant
 
 

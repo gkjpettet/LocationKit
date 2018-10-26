@@ -42,28 +42,100 @@ Protected Module IPAPI
 		  ' Takes a Dictionary that has been derived from the JSON returned by the ipapi.co API 
 		  ' and returns it as a Geolocation.
 		  
+		  #Pragma BreakOnExceptions False
+		  
 		  Dim geo As New LocationKit.Geolocation
 		  
-		  geo.IP = d.Lookup("ip", "")
-		  geo.City = d.Lookup("city", "")
-		  geo.Region = d.Lookup("region", "")
-		  geo.RegionCode = d.Lookup("region_code", "")
-		  geo.Country = d.Lookup("country", "")
-		  geo.CountryName = d.Lookup("country_name", "")
-		  geo.ContinentCode = d.Lookup("continent_code", "")
-		  geo.InEU = d.Lookup("in_eu", True)
-		  geo.Postal = d.Lookup("postal", "")
-		  geo.Latitude = d.Lookup("latitude", "")
-		  geo.Longitude = d.Lookup("longitude", "")
 		  Try
-		    Dim tz AS Text = d.Lookup("timezone", "")
+		    geo.IP = d.Value("ip")
+		  Catch
+		    geo.IP = ""
+		  End Try
+		  
+		  Try
+		    geo.City = d.Value("city")
+		  Catch
+		    geo.City = ""
+		  End Try
+		  
+		  Try
+		    geo.Region = d.Value("region")
+		  Catch
+		    geo.Region = ""
+		  End Try
+		  
+		  Try
+		    geo.RegionCode = d.Value("region_code")
+		  Catch
+		    geo.RegionCode = ""
+		  End Try
+		  
+		  Try
+		    geo.Country = d.Value("country")
+		  Catch
+		    geo.Country = ""
+		  End Try
+		  
+		  Try
+		    geo.CountryName = d.Value("country_name")
+		  Catch
+		    geo.CountryName = ""
+		  End Try
+		  
+		  Try
+		    geo.ContinentCode = d.Value("continent_code")
+		  Catch
+		    geo.ContinentCode = ""
+		  End Try
+		  
+		  Try
+		    geo.InEU = d.Value("in_eu")
+		  Catch
+		    geo.InEU = True
+		  End Try
+		  
+		  Try
+		    geo.Postal = d.Value("postal")
+		  Catch
+		    geo.Postal = ""
+		  End Try
+		  
+		  Try
+		    geo.Latitude = d.Value("latitude")
+		  Catch
+		    geo.Latitude = 0
+		  End Try
+		  
+		  Try
+		    geo.Longitude = d.Value("longitude")
+		  Catch
+		    geo.Longitude = 0
+		  End Try
+		  
+		  Try
+		    Dim tz AS Text = d.value("timezone")
 		    geo.TimeZone = New Xojo.Core.TimeZone(tz)
 		  Catch
 		    geo.TimeZone = Nil
 		  End Try
-		  geo.UTCOffset = d.Lookup("utc_offset", "")
-		  geo.CountryCallingCode = d.Lookup("country_calling_code", "")
-		  geo.CurrencyCode = d.Lookup("currency", "")
+		  
+		  Try
+		    geo.UTCOffset = d.Value("utc_offset")
+		  Catch
+		    geo.UTCOffset = ""
+		  End Try
+		  
+		  Try
+		    geo.CountryCallingCode = d.Value("country_calling_code")
+		  Catch
+		    geo.CountryCallingCode = ""
+		  End Try
+		  
+		  Try
+		    geo.CurrencyCode = d.Value("currency")
+		  Catch
+		    geo.CurrencyCode = ""
+		  End Try
 		  
 		  Return geo
 		  
